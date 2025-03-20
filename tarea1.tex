@@ -106,4 +106,33 @@
   \end{enumerate}
 \end{sol}
 
+\begin{sol}
+  Usaremos el lema de Fermat. Supongamos que $y \in Y$ satisface el probelmae de minimizacion. Consideraremos una perturbacion $h \in \mathcal{C}_{0}^{2}([0, L])$. Luego tenemos que
+  \begin{equation*}
+    \lim_{\varepsilon \to 0} \frac{J(y + \varepsilon h) - J(y)}{h} = \frac{d}{d \varepsilon} J(y + \varepsilon h)\big|_{\varepsilon = 0} = 0
+  \end{equation*}
+
+  Hagamos el calculo
+  \begin{align*}
+    \frac{d}{d \varepsilon} J(y + \varepsilon h) &= \frac{d}{d \varepsilon}(\frac12 \int_{0}^{L} EI(y''(x) + \varepsilon h''(x))^{2} dx - \int_{0}^{L} q(x)(y(x) + \varepsilon h(x)))\\
+  \end{align*}
+
+  Dada la regularidad de las funciones con las que estamos trabajando, podemos entrar la derivada dentro de las integrales
+
+  \begin{align*}
+    \frac{d}{d \varepsilon} J(y + \varepsilon h) &= \int_{0}^{L} EI(y''(x) + \varepsilon h''(x)) \cdot h''(x) dx - \int_{0}^{L} q(x)h(x) dx\\
+                                                 &= \int_{0}^{L} -q(x)h(x) + EI(y''(x) + \varepsilon h''(x))h''(x) dx
+  \end{align*}
+
+  Luego tenemos que
+  \begin{equation*}
+    \int_{0}^{L} -q(x)h(x) + EIy''(x)h''(x) dx = \frac{d}{d \varepsilon} J(y + \varepsilon h)|_{\varepsilon = 0} = 0
+  \end{equation*}
+
+  Considerando $\alpha(x) = -q(x)$ y $\beta(x) = EIy''(x)$ podemos usar el lema, pues $q$ es continua por hipótesis e $y$ es continua pues estamos suponiendo que resuelve el problema. Por lo tanto
+  \begin{equation*}
+    y^{(4)}(x) = \frac{q(x)}{EI}
+  \end{equation*}
+\end{sol}
+
 \end{document}
