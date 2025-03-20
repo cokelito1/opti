@@ -1,0 +1,109 @@
+\documentclass[a4paper,oneside,10.5pt]{USMArt}
+
+\usepackage{personal}
+\usepackage{comment}
+\usepackage[letterpaper]{geometry}
+
+\title{Tarea I - Optimización y Control}
+\sigla{MAT-379 }
+\ramo{Optimización y Control}
+\profesor{Patricio Guzman}
+\semestre{2025-1}
+\author{Jorge Bravo}
+
+\begin{document}
+\maketitle
+
+\begin{sol}
+  Sea $P = \{J(y) \; | \; y \in C\}$, donde $C = \{y \in \mathcal{C}^{1} \; | \; y(0) = 0, y(1) = 1\}$ y
+
+  $J(y) = \int_{1}^{\frac12} |y(x)| dx + \int_{\frac12}^1 |y'(x)| dx$
+
+  \begin{enumerate}
+    \item Notemos que el conjunto C es no vació, pues la función $\text{Id}_{[0, 1]}$ cumple las condiciones para pertenecer a este. Luego podemos evaluar el funcional en $\text{Id}_{[0, 1]}$ y nos dará un numero pues estamos integrando funciones continuas sobre compactos. Notemos que $|y(x)| \geq 0$ e $|y'(x)| \geq 0$ para todo $y \in C$ y $x \in [0, 1]$, por lo tanto tenemos que $\forall y \in C, J(y) \geq 0$. Dado que mostramos que el conjunto $P$ es no vacío y tiene una cota inferior, existe $\inf P \in \RR$ por axioma del supremo e ínfimo.
+
+    \item Dado que en el paso anterior mostramos que $0$ es un cota inferior para el conjunto $P$ y el ínfimo es la mayor de las cotas superiores tenemos que
+    \begin{equation*}
+      0 \leq \inf P
+    \end{equation*}
+
+    \item La intuición nos dice que una función que minimiza $J$ que esta fuera del conjunto $C$ es la indicatriz del conjunto $[\frac12, 1]$, construyamos una sucesión de funciones que la aproximen desde $C$. Consideremos la siguiente sucesión para $n \geq 3$
+    \begin{equation*}
+      f_{n}(x) = \begin{cases}
+        0 & \text{ si } x \in [0, \frac12 - \frac1n)\\
+        P_{n}(x) & \text{ si } x \in [\frac12 - \frac1n, \frac12]\\
+        1 & \text{ si } x \in (\frac12, 1]
+        \end{cases}
+    \end{equation*}
+
+          Donde $P_{n}$ sera un polinomio que a de cumplir con las siguientes condiciones
+    \begin{align*}
+      P_{n}(\frac12) &= 1\\
+      P_{n}'(\frac12) &= 0\\
+      P_{n}(\frac12 - \frac1n) &= 0\\
+      P_{n}'(\frac12 - \frac1n) &= 0
+    \end{align*}
+
+          Pues si $P_{n}$ cumple con esas cuatro condiciones, entonces $f_{n} \in C$, dado que están de acuerdo en la derivada en los puntos de pegado y en el valor de la función también. Notemos que por construcción $f_{n}(0) = 0$ y $f_{n}(1) = 1$.
+
+          Dado que tenemos $4$ condiciones sobre $P_{n}$, un polinomio de grado $3$ sera suficiente. Consideraremos $P_{n}(x) = a(x - \frac12)^{3} + b(x - \frac12)^{2} + c(x - \frac12) + d$. Luego las cuatro condiciones se transforman en lo siguiente
+          \begin{align*}
+            d &= 1\\
+            c &= 0\\
+            -\frac{a}{n^{3}} + \frac{b}{n^{2}} + 1 &= 0\\
+            \frac{3a}{n^{2}} - \frac{2b}{n} &= 0
+          \end{align*}
+
+          Resolviendo el sistema llegamos al polinomio $P_{n}$, el cual por construcción satisface todo lo que necesitábamos.
+
+          \begin{equation*}
+            P_{n}(x) = -2n^{3}(x - \frac12)^{3} - 3n^{2}(x - \frac12)^{2} + 1
+          \end{equation*}
+
+          Luego $f_{n} \in C$. Probemos que en efecto $(f_{n})_{n \geq 3}$ es una sucesión minimizante.
+
+          Notemos que
+          \begin{align*}
+            J(f_{n}) &= \int_{0}^{\frac{1}{2}} |f_{n}(x)| dx + \int_{\frac12}^{1} |f_{n}(x)'|dx\\
+                     &= \int_{0}^{\frac12 - \frac1n} 0 dx + \int_{\frac12 - \frac1n}^{\frac12} |P_{n}(x)| dx + \int_{\frac12}^{1} 0 dx\\
+                     &= \int_{\frac12 - \frac1n}^{\frac12} |P_{n}(x)| dx
+          \end{align*}
+
+          Dado que $P_{n}'$ es una cuadrática con coeficiente líder negativo, y sabemos que $P_{n}'(\frac12 - \frac1n) = 0 = P_{n}(\frac12)$, tenemos que $\forall x \in [\frac12  - \frac1n, \frac12], P_{n}'(x) \geq 0$, es decir $P_{n}$ es creciente en ese intervalo, dado que $P_{n}(\frac12 - \frac1n) = 0$, tenemos que
+          \begin{equation*}
+            \forall x \in [\frac12 - \frac1n, \frac12], P_{n}(x) \geq 0
+          \end{equation*}
+
+          Luego seguimos con el calculo
+          \begin{align*}
+            J(f_{n}) &= \int_{\frac12 - \frac1n}^{\frac12} P_{n}(x) dx\\
+                     &= \int_{\frac12 - \frac1n}^{\frac12} -2n^{3}(x - \frac12)^{3} - 3n^{2}(x - \frac12)^{2} + 1 dx\\
+                     &= -\frac{1}{2}n^{3}(x - \frac12)^{4}|_{x = \frac12 - \frac1n}^{x = \frac12} - n^{2}(x - \frac12)^{3}|_{x = \frac12 - \frac1n}^{x = \frac12} + \frac1n\\
+                     &= \frac{1}{2n} - \frac{1}{n} + \frac{1}{n}\\
+                     &= \frac{1}{2n}
+          \end{align*}
+
+          Por lo tanto obtenemos que
+          \begin{equation*}
+            \lim_{n \to \infty} J(f_{n}) = 0
+          \end{equation*}
+
+          Es decir $(f_{n})_{n \geq 3}$ es una sucesión minimizante.
+
+    \item No, no existe $\overline{y} \in C$ que minimize $J$, si suponemos que existe, entonces
+    \begin{equation*}
+      J(\overline{y}) = 0
+    \end{equation*}
+
+          Pues existe la sucesion minimizante a $0$ que construimos en el paso anterior y por tanto demostramos que $\inf P = 0$. Dado que $J(\overline{y})$ es la suma de dos cantidades positivas y tiene que se igual a $0$, necesariamente cada una a de ser $0$.
+
+          Notemos que
+          \begin{equation*}
+            \int_{0}^{\frac12} |\overline{y}(x)| dx = 0 \implies \forall x \in [0, \frac12], |\overline{y}(x)| = 0 \implies \forall x \in [0, \frac12], \overline{y}(x) = 0
+          \end{equation*}
+
+          Pues la cantidad de adentro es positiva y por tanto $0$ c.t.p. y por continuidad, en todas partes. Por lo tanto tenemos que $\overline{y}|_{[0, \frac12]} \equiv 0$. Análogamente, dado que estamos suponiendo $\overline{y} \in C$, $\overline{y}'$ es continua y por tanto su valor absoluto igual. Por el argumento anterior $\overline{y}'|_{[\frac12, 1]} \equiv 0$, por lo tanto $\overline{y}|_{[\frac12, 1]} \equiv c$ para algún $c \in \RR$, dado que $\overline{y}(1) = 1 \implies c = 1$. Esto es una contradicción pues entonces $0 = \overline{y}(\frac12) = 1$.
+  \end{enumerate}
+\end{sol}
+
+\end{document}
