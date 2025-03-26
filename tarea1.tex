@@ -153,7 +153,8 @@
     \frac{d}{d \varepsilon} J(y + \varepsilon h) &= \frac{d}{d \varepsilon}(\frac12 \int_{0}^{L} EI(y''(x) + \varepsilon h''(x))^{2} dx - \int_{0}^{L} q(x)(y(x) + \varepsilon h(x)))\\
   \end{align*}
 
-  Dada la regularidad de las funciones con las que estamos trabajando, podemos entrar la derivada dentro de las integrales
+  Dada la regularidad de las funciones con las que estamos trabajando,
+  podemos entrar la derivada dentro de las integrales
 
   \begin{align*}
     \frac{d}{d \varepsilon} J(y + \varepsilon h) &= \int_{0}^{L} EI(y''(x) + \varepsilon h''(x)) \cdot h''(x) dx - \int_{0}^{L} q(x)h(x) dx\\
@@ -165,10 +166,93 @@
     \int_{0}^{L} -q(x)h(x) + EIy''(x)h''(x) dx = \frac{d}{d \varepsilon} J(y + \varepsilon h)|_{\varepsilon = 0} = 0
   \end{equation*}
 
-  Considerando $\alpha(x) = -q(x)$ y $\beta(x) = EIy''(x)$ podemos usar el lema, pues $q$ es continua por hipótesis e $y$ es continua pues estamos suponiendo que resuelve el problema. Por lo tanto
+  Considerando $\alpha(x) = -q(x)$ y $\beta(x) = EIy''(x)$ podemos usar el lema,
+  pues $q$ es continua por hipótesis e $y$ es continua pues estamos suponiendo que resuelve el problema. Por lo tanto
+  concluimos que $EIy''(x) \in \mathcal{C}^{2}([0, L])$ lo que implica que $y \in \mathcal{C}^{4}([0, L])$. Tenemos
+  entonces que
   \begin{equation*}
     y^{(4)}(x) = \frac{q(x)}{EI}
   \end{equation*}
+
+  Luego dado que la viga esta apoyada en el punto $0$ y $L$, la variación angular en los puntos de contacto de la
+  viga debe ser $0$, pues no debería haber defleccion en los puntos de apoyo. Es decir $y$ debe satisfacer lo siguiente
+
+  \begin{equation*}
+    \begin{cases}
+      y^{(4)}(x) = \frac{q(x)}{EI}\\
+      y(0) = 0\\
+      y(L) = 0\\
+      y''(0) = 0\\
+      y''(L) = 0
+    \end{cases}
+  \end{equation*}
+\end{sol}
+
+\begin{sol}
+\begin{enumerate}
+  \item Verifiquemos que $L(a, b) = k_{1}(k_{2}a - b - k_{3})^{2}$ es convexa.
+        Notemos que al ser de clase $\mathcal{C}^{2}$, solo es necesario calcular una de las
+        derivadas cruzadas, pues coinciden. Calculemos las derivadas
+        \begin{gather*}
+          \partial_{a} L(a, b) = 2k_{1}(k_{2}a - b -k_{3}) \cdot k_{2} \implies \partial_{aa}L(a, b) = 2k_{1}k_{2}^{2}\\
+          \partial_{b} L(a, b) = -2k_{1}(k_{2}a - b - k_{3}) \implies \partial_{bb} = 2k_{1}\\
+          \partial_{ab} L(a, b) = -2k_{1}k_{2}
+        \end{gather*}
+
+        Por lo tanto tenemos que el diferencial de $L$ se ve de la siguiente forma
+        \begin{equation*}
+          DL(a, b) = \begin{bmatrix}
+            2k_{1}k_{2}^{2} & -2k_{1}k_{2}\\
+            -2k_{1}k_{2}    & 2k_{1}
+                     \end{bmatrix}
+        \end{equation*}
+
+        Aplicando el criterio de Sylvester tenemos que el primer subdeterminante es $2k_{1}k_{2}^{2} \geq 0$ y
+        el determinante de la matriz completa es
+        \begin{equation*}
+          \det DL(a, b) = 4k_{1}^{2}k_{2}^{2} - 4k_{1}^{2}k_{2}^{2} = 0
+        \end{equation*}
+
+        Por lo tanto es una matriz definida positiva, lo que implica que la función es convexa.
+
+  \item El problema no tiene soluci\'on en $C$, consideremos el siguiente problema de valor inicial para
+        $\lambda \in \NN$
+        \begin{equation*}
+          \begin{cases}
+            k_{2}y - y' - k_{3} = \lambda\\
+            y(0) = y_{0}
+          \end{cases}
+        \end{equation*}
+
+        Resolveremos este problema de valor inicial por metodos elementales, notemos que es de variables separables
+        \begin{equation*}
+          \frac{y'}{k_{2}y - k_{3} - \lambda} = 1
+        \end{equation*}
+
+        Integrando obtenemos que
+        \begin{equation*}
+          \frac{1}{k_{2}} \ln(k_{2}y - k_{3} - \lambda) = x + C_{1} \implies \ln(k_{2}y - k_{3} - \lambda) = k_{2}x + k_{2}C_{1}
+        \end{equation*}
+
+        tomando exponencial
+        \begin{equation*}
+          k_{2}y - k_{3} - \lambda = Ck_{2}e^{k_{2}x} \implies y = Ce^{k_{2}x} + \frac{k_{3} + \lambda}{k_{2}}
+        \end{equation*}
+
+        Luego para la condición inicial tenemos que
+        \begin{equation*}
+          y_{0} = C + \frac{k_{3} + \lambda}{k_{2}} \implies y_{0} - \frac{k_{3} + \lambda}{k_{2}} = C
+        \end{equation*}
+
+        Se puede verificar que en efecto es una solución de la edo. Definamos $y_{\lambda}$ como la solución al
+        problema para alguna lambda. Luego tenemos que $y_{\lambda} \in \mathcal{C}^{\infty}([0, T])$ y
+        además $y_{\lambda}(0) = y_{0}$, por lo tanto $y_{\lambda} \in C$. Notemos que
+        \begin{equation*}
+          J(y_{\lambda}) = \int_{0}^{T} k_{1}\lambda^{2} dx = k_{1} \lambda^{2} T
+        \end{equation*}
+
+        Lo cual se va a infinito cuando $\lambda$ se va a infinito. Por lo tanto el problema \textbf{no} tiene solución.
+\end{enumerate}
 \end{sol}
 
 \end{document}
