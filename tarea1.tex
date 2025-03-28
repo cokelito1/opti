@@ -2,7 +2,7 @@
 
 \usepackage{personal}
 \usepackage{comment}
-\usepackage[letterpaper]{geometry}
+\usepackage[letterpaper, left=2cm, right=2cm]{geometry}
 
 \title{Tarea I - Optimización y Control}
 \sigla{MAT-379 }
@@ -213,7 +213,7 @@
     -20a (\frac{L}{4})^{3} + 12b (\frac{L}{4})^{2} - 6c \frac{L}{4} = 0
   \end{gather*}
 
-  La solucion viene dada por
+  La solucion, usando Wolfram, viene dada por
   \begin{gather*}
     a = -\frac{3840}{L^{4}}\\
     b = -\frac{2368}{L^{3}}\\
@@ -280,43 +280,57 @@
 
         Por lo tanto es una matriz definida semi-positiva, lo que implica que la función es convexa.
 
-  \item El problema no tiene soluci\'on en $C$, consideremos el siguiente problema de valor inicial para
-        $\lambda \in \NN$
+  \item Estamos bajo las condiciones del Teorema 4, pues $L(a, b) = k_{1}(k_{2}a - b -k_{3})^{2}$ es convexa
+        para todo $a, b \in \RR^{2}$, ademas estamos trabajando sobre $C = \{y \in \mathcal{C}^{1}([0, T]) \; | \; y(0) = y_{0}\}$. Luego si encontramos una solucion a
         \begin{equation*}
-          \begin{cases}
-            k_{2}y - y' - k_{3} = \lambda\\
-            y(0) = y_{0}
-          \end{cases}
+        \begin{cases}
+          \frac{d}{dx} L_b(y, y') = L_{a}(y, y')\\
+          L_{b}(y(T), y'(T)) = 0
+        \end{cases}
         \end{equation*}
 
-        Resolveremos este problema de valor inicial por metodos elementales, notemos que es de variables separables
+        Habremos encontrado solucion al problema de optimizacion. Calculemos, de la primera ecuacion tenemos
         \begin{equation*}
-          \frac{y'}{k_{2}y - k_{3} - \lambda} = 1
+          \frac{d}{dx}(-2k_{1}(k_{2}y - y' - k_{3})) = 2k_{1}k_{2}(k_{2}y - y' -k_{3}) \implies -2k_{1}k_{2}y' + 2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}y' - k_{3}
         \end{equation*}
 
-        Integrando obtenemos que
+        Despejando obtenemos
         \begin{equation*}
-          \frac{1}{k_{2}} \ln(k_{2}y - k_{3} - \lambda) = x + C_{1} \implies \ln(k_{2}y - k_{3} - \lambda) = k_{2}x + k_{2}C_{1}
+          2k_{1}y'' = 2k_{1}k_{2}^{2}y - k_{3}
         \end{equation*}
 
-        tomando exponencial
+        Esto es una EDO lineal de segundo orden no homegenea. Resolvemos la EDO homogena primero
         \begin{equation*}
-          k_{2}y - k_{3} - \lambda = Ck_{2}e^{k_{2}x} \implies y = Ce^{k_{2}x} + \frac{k_{3} + \lambda}{k_{2}}
+          2k_{1} \lambda^{2} - 2k_{1}k_{2}^{2} = 0 \implies \lambda^{2} = k_{2}^{2}
         \end{equation*}
 
-        Luego para la condición inicial tenemos que
+        Por lo tanto la soluci\'on al problema homogeneo viene dada por
         \begin{equation*}
-          y_{0} = C + \frac{k_{3} + \lambda}{k_{2}} \implies y_{0} - \frac{k_{3} + \lambda}{k_{2}} = C
+          y_{h}(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x}
         \end{equation*}
 
-        Se puede verificar que en efecto es una solución de la edo. Definamos $y_{\lambda}$ como la solución al
-        problema para alguna lambda. Luego tenemos que $y_{\lambda} \in \mathcal{C}^{\infty}([0, T])$ y
-        además $y_{\lambda}(0) = y_{0}$, por lo tanto $y_{\lambda} \in C$. Notemos que
+        Luego sabemos que la solucion viene dada por $y(x) = y_{h}(x) + y_{p}(x)$. La forma de la EDO nos hace
+        pensar que $y_{p}(x) = C \in \RR$, provemos esto
         \begin{equation*}
-          J(y_{\lambda}) = \int_{0}^{T} k_{1}\lambda^{2} dx = k_{1} \lambda^{2} T
+          2k_{1}\cdot 0 = 2k_{1}k_{2}^{2}C - k_{3} \implies C = \frac{k_{3}}{2k_{1}k_{2}^{2}}
         \end{equation*}
 
-        Lo cual se va a infinito cuando $\lambda$ se va a infinito. Por lo tanto el problema \textbf{no} tiene solución.
+        Luego la solucion a la primera ecuacion es
+        \begin{equation*}
+          y(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x} + \frac{k_{3}}{2k_{1}k_{2}^{2}}
+        \end{equation*}
+
+        Aplicamos las condiciones de borde del conjunto donde $y$ vive.
+        \begin{equation*}
+          C_{1} + C_{2} + \frac{k_{3}}{2k_{1}k_{2}^{2}}= y(0) = y_{0}
+        \end{equation*}
+
+        TODO: TERMINAR ESTO
+        Aplicando la segunda ecuacion del Teorema 4 obtenemos que
+        \begin{equation*}
+          -2k_{1}(k_{2})
+        \end{equation*}
+
 \end{enumerate}
 \end{sol}
 
