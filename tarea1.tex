@@ -255,4 +255,52 @@
 \end{enumerate}
 \end{sol}
 
+\begin{sol}
+  Sea $x_{0}, x_{1} \in \RR$, tales que $x_{0} < x_{1}$. Supongamos
+  $L \in \mathcal{C}^{1}([x_{0}, x_{1}] \times \RR, \times \RR)$. Sea $y \in C^{1}([x_{0}, x_{1}])$ tal que maximice
+  el problema, por el lema de fermat tenemos que para $h \in \mathcal{C}^{1}[0, L]$, esto
+  pues no hay condiciones de borde y por tanto no necesitamos restringir la perturbacion para
+  no salirnos del espacio. Se cumple que
+  \begin{equation*}
+    \lim_{\varepsilon \to 0} \frac{J(y + \varepsilon h) - J(y)}{\varepsilon} = \frac{d}{d\varepsilon} J(y + \varepsilon h)|_{\varepsilon = 0} = 0
+  \end{equation*}
+
+  Calculemos, notemos que la derivada puede entrar dentro de la integral dada la regularidad de $L$.
+  \begin{align*}
+    \frac{d}{d\varepsilon} J(y + \varepsilon h) &= \int_{x_{0}}^{x_{1}} \frac{d}{d\varepsilon} L(x, y + \varepsilon h, y' + \varepsilon h')\\
+    &= \int_{x_{0}}^{x_{1}} L_{a}(x, y + \varepsilon h, y' + \varepsilon h') \cdot h + L_{b}(x, y + \varepsilon h, y' + \varepsilon h') \cdot h'
+  \end{align*}
+
+  Evaluamos en $0$ e igualamos a $0$.
+  \begin{equation*}
+    \frac{d}{d\varepsilon} J(y + \varepsilon h) = \int_{x_{0}}^{x_{1}} L_{a}(x, y, y') \cdot h + L_{b}(x, y, y') \cdot h' = 0
+  \end{equation*}
+
+  Dado que tenemos este resultado para todo $h \in \mathcal{C}^{1}([x_{0}, x_{1}])$, lo tenemos en particular para
+  $h \in \mathcal{C}_{0}^{1}([x_{0}, x_{1}])$. Dado que $L_{a}, L_{b} \in \mathcal{C}([x_{0}, x_{1}])$, podemos usar
+  el teorema fundamental del calculo de variaciones (Lema 1) con $\alpha = L_{a}$ y $\beta = L_{b}$. Por lo tanto
+  obtenemos que $L_{b} \in \mathcal{C}^{1}$ y que satisface
+  \begin{equation*}
+    \frac{d}{dx} L_{b}(x, y, y') = L_{a}(x, y, y')
+  \end{equation*}
+
+  Con lo que establecemos la primera condición.
+
+  Notemos ademas que para todo $h \in \mathcal{C}^{1}([x_{0}, x_{1}])$ tenemos que
+  \begin{align*}
+   0 = \int_{x_{0}}^{x_{1}} (L_{a}(x, y, y')h + L_{b}(x, y , y')h') dx &= \int_{x_{0}}^{x_{1}} (L_{a}(x, y, y') - \frac{d}{dx} L_{b}(x, y, y'))h  dx + L_{b} \cdot h|_{x = x_{0}}^{x = x_{1}}
+  \end{align*}
+
+  Dado que lo que esta dentro de la integral es $0$, tenemos que
+  \begin{equation*}
+    L_{b} \cdot h|_{x = x_{0}}^{x = x_{1}} = 0
+  \end{equation*}
+
+  Tomando $h(x) = \frac{x - x_{0}}{x_{1} - x_{0}}$, la cual es $\mathcal{C}^{\infty}$ en el intervalo, obtenemos
+  que $L_{b}(x_{1}, y(x_{1}), y'(x_{1})) = 0$, tomando
+  $h(x) = \frac{x - x_{1}}{x_{0} - x_{1}}$ obtenemos que $-L_{b}(x_{0}, y(x_{0}), y'(x_{0})) = 0 \implies L_{b}(x_{0}, y(x_{0}), y'(x_{0})) = 0$
+
+  Con lo que tenemos el resultado.
+\end{sol}
+
 \end{document}
