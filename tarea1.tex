@@ -174,9 +174,74 @@
     y^{(4)}(x) = \frac{q(x)}{EI}
   \end{equation*}
 
-  Luego dado que la viga esta apoyada en el punto $0$ y $L$, la variación angular en los puntos de contacto de la
-  viga debe ser $0$, pues no debería haber defleccion en los puntos de apoyo. Es decir $y$ debe satisfacer lo siguiente
+  Integrando por partes 2 veces obtenemos
+  \begin{equation*}
+    \int_{0}^{L} (EIy^{(4)} - q(x))h(x) dx + y''(x) \cdot h'(x)|_{x = 0}^{x = L} = 0
+  \end{equation*}
 
+  La integral vale $0$, por lo que satisface $y^{(4)}$, notemos que el segundo termino
+  de frontera no aparece pues $h(0) = 0 = h(L)$. Por lo tanto tenemos que
+  \begin{equation*}
+    y''(x) \cdot h'(x)|_{x = 0}^{x = L} = 0
+  \end{equation*}
+
+  Necesitaremos un polinomio $P$ de grado $5$ que cumpla
+  \begin{align*}
+    P(\frac{L}{2}) &= \frac{L}{2}\\
+    P'(\frac{L}{2}) &= 1\\
+    P''(\frac{L}{2}) &= 0\\
+    P(\frac{3L}{4}) &= 0\\
+    P'(\frac{3L}{4}) &= 0\\
+    P''(\frac{3L}{4}) &= 0
+  \end{align*}
+
+  Centrando en $\frac{3L}{4}$ obtenemos que el polinomio a de tener la siguiente forma
+  \begin{equation*}
+    P(x) = a(x - \frac{3L}{4})^{5} + b(x - \frac{3L}{4})^{4} + c(x - \frac{3L}{4})^{3}
+  \end{equation*}
+
+  Calculamos las 2 primeras derivadas
+  \begin{gather*}
+    P'(x) = 5a(x - \frac{3L}{4})^{4} + 4b(x - \frac{3L}{4})^{3} + 3c(x - \frac{3L}{4})^{2}\\
+    P''(x) = 20a(x - \frac{3L}{4})^{3} + 12b(x - \frac{3L}{4})^{2} + 6c(x - \frac{3L}{4})
+  \end{gather*}
+
+  Evaluando obtenemos el sistema
+  \begin{gather*}
+    -a(\frac{L}{4})^{5} + b (\frac{L}{4})^{4} - c(\frac{L}{4})^{3} = \frac{L}{2}\\
+    5a (\frac{L}{4})^{4} - 4b (\frac{L}{4})^{3} + 3c (\frac{L}{4})^{2} = 1\\
+    -20a (\frac{L}{4})^{3} + 12b (\frac{L}{4})^{2} - 6c \frac{L}{4} = 0
+  \end{gather*}
+
+  La solucion viene dada por
+  \begin{gather*}
+    a = -\frac{3840}{L^{4}}\\
+    b = -\frac{2368}{L^{3}}\\
+    c = -\frac{384}{L^{2}}
+  \end{gather*}
+
+  Definimos la funcion
+  \begin{equation*}
+    f(x) = \begin{cases}
+      x & \text{ si } x \in [0, \frac{L}{2})\\
+      P(x) & \text{ si } x \in [\frac{L}{2}, \frac{3L}{4}]\\
+      0 & \text{ si } x \in (\frac{3L}{4}, 1]
+    \end{cases}
+  \end{equation*}
+
+  Esta es $\mathcal{C}^{2}_{0}([0, L])$ por construccion, satisface que $f'(0) = 1$ y $f'(L) = 0$. Tomando $h = f$
+  obtenemos que
+  \begin{equation*}
+    0 = y''(L) \cdot h'(L) - y''(0) \cdot h'(0) = -y''(0) \implies y''(0) = 0
+  \end{equation*}
+
+  Luego tomando $h(x) = f(L - x)$, la cual sigue siendo $C^{2}_{0}([0, L])$, pues $f(L - L) = 0$ y $f(L - 0) = 0$,
+  obtenemos que
+  \begin{equation*}
+    0 = y''(L) \cdot f'(L - L) - y''(0) \cdot h'(L - 0) = y''(L)
+  \end{equation*}
+
+  Por lo tanto $y$ a de satisfacer
   \begin{equation*}
     \begin{cases}
       y^{(4)}(x) = \frac{q(x)}{EI}\\
