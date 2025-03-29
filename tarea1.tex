@@ -213,14 +213,14 @@
     -20a (\frac{L}{4})^{3} + 12b (\frac{L}{4})^{2} - 6c \frac{L}{4} = 0
   \end{gather*}
 
-  La solucion, usando Wolfram, viene dada por
+  La solución, usando Wolfram, viene dada por
   \begin{gather*}
     a = -\frac{3840}{L^{4}}\\
     b = -\frac{2368}{L^{3}}\\
     c = -\frac{384}{L^{2}}
   \end{gather*}
 
-  Definimos la funcion
+  Definimos la función
   \begin{equation*}
     f(x) = \begin{cases}
       x & \text{ si } x \in [0, \frac{L}{2})\\
@@ -229,7 +229,7 @@
     \end{cases}
   \end{equation*}
 
-  Esta es $\mathcal{C}^{2}_{0}([0, L])$ por construccion, satisface que $f'(0) = 1$ y $f'(L) = 0$. Tomando $h = f$
+  Esta es $\mathcal{C}^{2}_{0}([0, L])$ por construcción, satisface que $f'(0) = 1$ y $f'(L) = 0$. Tomando $h = f$
   obtenemos que
   \begin{equation*}
     0 = y''(L) \cdot h'(L) - y''(0) \cdot h'(0) = -y''(0) \implies y''(0) = 0
@@ -281,7 +281,7 @@
         Por lo tanto es una matriz definida semi-positiva, lo que implica que la función es convexa.
 
   \item Estamos bajo las condiciones del Teorema 4, pues $L(a, b) = k_{1}(k_{2}a - b -k_{3})^{2}$ es convexa
-        para todo $a, b \in \RR^{2}$, ademas estamos trabajando sobre $C = \{y \in \mathcal{C}^{1}([0, T]) \; | \; y(0) = y_{0}\}$. Luego si encontramos una solucion a
+        para todo $a, b \in \RR^{2}$, además estamos trabajando sobre $C = \{y \in \mathcal{C}^{1}([0, T]) \; | \; y(0) = y_{0}\}$. Luego si encontramos una solución a
         \begin{equation*}
         \begin{cases}
           \frac{d}{dx} L_b(y, y') = L_{a}(y, y')\\
@@ -289,7 +289,7 @@
         \end{cases}
         \end{equation*}
 
-        Habremos encontrado solucion al problema de optimizacion. Calculemos, de la primera ecuacion tenemos
+        Habremos encontrado solución al problema de optimización. Calculemos, de la primera ecuaci\'on tenemos
         \begin{equation*}
           \frac{d}{dx}(-2k_{1}(k_{2}y - y' - k_{3})) = 2k_{1}k_{2}(k_{2}y - y' -k_{3}) \implies -2k_{1}k_{2}y' + 2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}y' - 2k_{1}k_{2}k_{3}
         \end{equation*}
@@ -299,7 +299,7 @@
           2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}k_{3}
         \end{equation*}
 
-        Esto es una EDO lineal de segundo orden no homegenea. Resolvemos la EDO homogena primero
+        Esto es una EDO lineal de segundo orden no homegenea. Resolvemos la EDO homogenea primero
         \begin{equation*}
           2k_{1} \lambda^{2} - 2k_{1}k_{2}^{2} = 0 \implies \lambda^{2} = k_{2}^{2}
         \end{equation*}
@@ -309,13 +309,13 @@
           y_{h}(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x}
         \end{equation*}
 
-        Luego sabemos que la solucion viene dada por $y(x) = y_{h}(x) + y_{p}(x)$. La forma de la EDO nos hace
+        Luego sabemos que la solución viene dada por $y(x) = y_{h}(x) + y_{p}(x)$. La forma de la EDO nos hace
         pensar que $y_{p}(x) = C \in \RR$, provemos esto
         \begin{equation*}
           2k_{1}\cdot 0 = 2k_{1}k_{2}^{2}C - 2k_{1}k_{2}k_{3} \implies C = \frac{k_{3}}{k_{2}}
         \end{equation*}
 
-        Luego la solucion a la primera ecuacion es
+        Luego la solución a la primera ecuación es
         \begin{equation*}
           y(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x} + \frac{k_{3}}{k_{2}}
         \end{equation*}
@@ -325,7 +325,7 @@
           C_{1} + C_{2} + \frac{k_{3}}{k_{2}}= y(0) = y_{0}
         \end{equation*}
 
-        Aplicando la segunda ecuacion del Teorema 4 obtenemos que
+        Aplicando la segunda ecuación del Teorema 4 obtenemos que
         \begin{equation*}
           -2k_{1}(k_{2}(C_{1}e^{-k_{2}T} + C_{2}e^{k_{2}T} + \frac{k_{3}}{k_{2}}) - (C_{2}k_{2}e^{k_{2}T} - C_{1}k_{2}e^{-k_{2}T}) - k_{3}) = 0
         \end{equation*}
@@ -341,12 +341,12 @@
           C_{1} = 0
         \end{equation*}
 
-        Reemplazando en la primera ecuacion
+        Reemplazando en la primera ecuación
         \begin{equation*}
           C_{2} = \frac{k_{2}y_{0} - k_{3}}{k_{2}}
         \end{equation*}
 
-        Por lo tanto, dado que $L \in C^{1}([0, T] \times \RR \times \RR)$ y es convexa, tenemos que la solucion
+        Por lo tanto, dado que $L \in C^{1}([0, T] \times \RR \times \RR)$ y es convexa, tenemos que la solución
         al problema es
         \begin{equation*}
           y(x) = \frac{k_{2}y_{0} - k_{3}}{k_{2}}e^{k_{2}x} + \frac{k_{3}}{k_{2}}
@@ -359,7 +359,7 @@
   Sea $x_{0}, x_{1} \in \RR$, tales que $x_{0} < x_{1}$. Supongamos
   $L \in \mathcal{C}^{1}([x_{0}, x_{1}] \times \RR, \times \RR)$. Sea $y \in C^{1}([x_{0}, x_{1}])$ tal que maximice
   el problema, por el lema de fermat tenemos que para $h \in \mathcal{C}^{1}[0, L]$, esto
-  pues no hay condiciones de borde y por tanto no necesitamos restringir la perturbacion para
+  pues no hay condiciones de borde y por tanto no necesitamos restringir la perturbación para
   no salirnos del espacio. Se cumple que
   \begin{equation*}
     \lim_{\varepsilon \to 0} \frac{J(y + \varepsilon h) - J(y)}{\varepsilon} = \frac{d}{d\varepsilon} J(y + \varepsilon h)|_{\varepsilon = 0} = 0
@@ -386,7 +386,7 @@
 
   Con lo que establecemos la primera condición.
 
-  Notemos ademas que para todo $h \in \mathcal{C}^{1}([x_{0}, x_{1}])$ tenemos que
+  Notemos además que para todo $h \in \mathcal{C}^{1}([x_{0}, x_{1}])$ tenemos que
   \begin{align*}
    0 = \int_{x_{0}}^{x_{1}} (L_{a}(x, y, y')h + L_{b}(x, y , y')h') dx &= \int_{x_{0}}^{x_{1}} (L_{a}(x, y, y') - \frac{d}{dx} L_{b}(x, y, y'))h  dx + L_{b} \cdot h|_{x = x_{0}}^{x = x_{1}}
   \end{align*}
