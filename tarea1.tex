@@ -291,12 +291,12 @@
 
         Habremos encontrado solucion al problema de optimizacion. Calculemos, de la primera ecuacion tenemos
         \begin{equation*}
-          \frac{d}{dx}(-2k_{1}(k_{2}y - y' - k_{3})) = 2k_{1}k_{2}(k_{2}y - y' -k_{3}) \implies -2k_{1}k_{2}y' + 2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}y' - k_{3}
+          \frac{d}{dx}(-2k_{1}(k_{2}y - y' - k_{3})) = 2k_{1}k_{2}(k_{2}y - y' -k_{3}) \implies -2k_{1}k_{2}y' + 2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}y' - 2k_{1}k_{2}k_{3}
         \end{equation*}
 
         Despejando obtenemos
         \begin{equation*}
-          2k_{1}y'' = 2k_{1}k_{2}^{2}y - k_{3}
+          2k_{1}y'' = 2k_{1}k_{2}^{2}y - 2k_{1}k_{2}k_{3}
         \end{equation*}
 
         Esto es una EDO lineal de segundo orden no homegenea. Resolvemos la EDO homogena primero
@@ -312,23 +312,44 @@
         Luego sabemos que la solucion viene dada por $y(x) = y_{h}(x) + y_{p}(x)$. La forma de la EDO nos hace
         pensar que $y_{p}(x) = C \in \RR$, provemos esto
         \begin{equation*}
-          2k_{1}\cdot 0 = 2k_{1}k_{2}^{2}C - k_{3} \implies C = \frac{k_{3}}{2k_{1}k_{2}^{2}}
+          2k_{1}\cdot 0 = 2k_{1}k_{2}^{2}C - 2k_{1}k_{2}k_{3} \implies C = \frac{k_{3}}{k_{2}}
         \end{equation*}
 
         Luego la solucion a la primera ecuacion es
         \begin{equation*}
-          y(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x} + \frac{k_{3}}{2k_{1}k_{2}^{2}}
+          y(x) = C_{1}e^{-k_{2}x} + C_{2}e^{k_{2}x} + \frac{k_{3}}{k_{2}}
         \end{equation*}
 
         Aplicamos las condiciones de borde del conjunto donde $y$ vive.
         \begin{equation*}
-          C_{1} + C_{2} + \frac{k_{3}}{2k_{1}k_{2}^{2}}= y(0) = y_{0}
+          C_{1} + C_{2} + \frac{k_{3}}{k_{2}}= y(0) = y_{0}
         \end{equation*}
 
-        TODO: TERMINAR ESTO
         Aplicando la segunda ecuacion del Teorema 4 obtenemos que
         \begin{equation*}
-          -2k_{1}(k_{2})
+          -2k_{1}(k_{2}(C_{1}e^{-k_{2}T} + C_{2}e^{k_{2}T} + \frac{k_{3}}{k_{2}}) - (C_{2}k_{2}e^{k_{2}T} - C_{1}k_{2}e^{-k_{2}T}) - k_{3}) = 0
+        \end{equation*}
+
+        Resolviendo
+        \begin{gather*}
+          -2k_{1}(C_{1}k_{2}e^{-k_{2}T} + C_{2}k_{2}e^{k_{2}} + k_{3} - C_{2}k_{2}e^{k_{2}T} + C_{1}k_{2}e^{-k_{2}T} - k_{3}) = 0\\
+          \iff -4C_{1}k_{1}k_{2}e^{-k_{2}T} = 0
+        \end{gather*}
+
+        De esto obtenemos que
+        \begin{equation*}
+          C_{1} = 0
+        \end{equation*}
+
+        Reemplazando en la primera ecuacion
+        \begin{equation*}
+          C_{2} = \frac{k_{2}y_{0} - k_{3}}{k_{2}}
+        \end{equation*}
+
+        Por lo tanto, dado que $L \in C^{1}([0, T] \times \RR \times \RR)$ y es convexa, tenemos que la solucion
+        al problema es
+        \begin{equation*}
+          y(x) = \frac{k_{2}y_{0} - k_{3}}{k_{2}}e^{k_{2}x} + \frac{k_{3}}{k_{2}}
         \end{equation*}
 
 \end{enumerate}
