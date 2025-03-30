@@ -403,4 +403,38 @@
   Con lo que tenemos el resultado.
 \end{sol}
 
+\begin{sol}
+  Recordemos que para una función $f : \RR^{n} \to \RR$ de clase $\mathcal{C}^{1}(\RR^{n})$ es concava si y solamente
+  si
+  \begin{equation*}
+    f(g) \leq f(p) + (\nabla f(p), g - p)_{\RR^{n}}
+  \end{equation*}
+  Sea $\overline{y}, y \in \mathcal{C}^{1}[x_{0}, x_{1}]$, tal que $\overline{y}$ satisface
+  $(3)$.
+
+  Dado que la función $L(x, \cdot, \cdot)$ es concava para todo $x \in [x_{0}, x_{1}]$, tenemos que
+  \begin{equation*}
+    L(x, y, y') \leq L(x, \overline{y}, \overline{y}') + L_{a}(x, \overline{y}, \overline{y}') \cdot (y - \overline{y}) + L_{b}(x, \overline{y}, \overline{y}') \cdot (y' - \overline{y}')
+  \end{equation*}
+
+  Integrando en $[x_{0}, x_{1}]$ tenemos que
+  \begin{equation*}
+    J(y) \leq J(\overline{y}) + \int_{x_{0}}^{x_{1}} L_{a}(x, \overline{y}, \overline{y}') \cdot (y - \overline{y}) + L_{b}(x, \overline{y}, \overline{y}') (y' - \overline{y}') dx
+  \end{equation*}
+
+  Integrando por partes
+  \begin{equation*}
+     J(y) \leq J(\overline{y}) + \int_{x_{0}}^{x_{1}} (L_{a}(x, \overline{y}, \overline{y}') - \frac{d}{dx} L_{b}(x, \overline{y}, \overline{y}')) \cdot (y - \overline{y}) dx + L_{b}(x, \overline{y}, \overline{y}') \cdot (y - \overline{y})|^{x = x_{1}}_{x = x_{0}}
+  \end{equation*}
+
+  Donde la integral es $0$, pues $\overline{y}$ satisface esa ecuación y los términos de borde son $0$, pues $L_{b}(x, \overline{y}, \overline{y}')$ es $0$ en los bordes.
+
+  Por lo tanto
+  \begin{equation*}
+    J(y) \leq J(\overline{y})
+  \end{equation*}
+
+  Es decir, $\overline{y}$ es un máximo.
+\end{sol}
+
 \end{document}
