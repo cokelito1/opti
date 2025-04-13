@@ -437,4 +437,182 @@
   Es decir, $\overline{y}$ es un máximo.
 \end{sol}
 
+
+\begin{sol}
+  Notemos que podemos reescribir el funcional $J$ de la siguiente forma
+  \begin{equation*}
+    J(y) = \int_{0}^{1} y(x)^{2} + y'(x)^{2} dx + \int_{0}^{1} y(x) \cdot y(x)' dx = \int_{0}^{1} y(x)^{2} + y(x) \cdot y(x)' + y'(x)^{2} dx
+  \end{equation*}
+
+  Por lo tanto tenemos que $L(a, b) = a^{2} + ab + b^{2}$, el cual es de clase $\mathcal{C}^{\infty}$. Veamos que los
+  extremos del funcional no tienen esquinas. Supongamos que $y \in AC(0,1)$ es solucion con esquinas.
+  Luego esta a de satisface las condiciones de Weierstrass-Erdmann. Calculemos la derivada con respecto a $b$ de $L$.
+  \begin{equation*}
+    L_{b} = a + 2b
+  \end{equation*}
+
+
+  Luego tenemos que la solución a de satisfacer $L_{b}|_{c^{-}} = L_{b}|_{c^{+}}$, es decir
+  \begin{equation*}
+    y(c^{-}) + 2y'(c^{-}) = y(c^{+}) + 2y'(c^{+}) \implies y'(c^{-}) = y'(c^{+})
+  \end{equation*}
+
+  Pues $y(c^{-}) = y(c^{+})$ por la continuidad de $y$, el resultado se obtiene dividiendo por $2$. Por lo tanto
+  $y$ no tiene esquinas.
+
+  Verifiquemos que $L$ es convexa, aplicaremos el criterio de Sylvester por lo que tenemos que calcular las derivadas.
+  Dado que la función es $\mathcal{C}^{\infty}$, las derivadas cruzadas son iguales
+  \begin{align*}
+    L_{bb} &= 2\\
+    L_{ab} &= 1\\
+    L_{aa} &= 2
+  \end{align*}
+
+  Luego tenemos que
+  \begin{equation*}
+    HL(a, b) = \begin{bmatrix} 2 & 1\\ 1 & 2 \end{bmatrix}
+  \end{equation*}
+
+  El primer menor es $2 > 0$ y el determinante es $3$, por lo tanto $HL$ es definida positiva por lo que $L$ es convexa.
+  Luego basta resolver la ecuación de Euler Lagrange, pues estamos buscando soluciones $\mathcal{C}^{1}$. Notemos que $L_{a} = 2a + b$, luego la ecuación de Euler-Lagrange
+  nos queda
+  \begin{equation*}
+    \frac{d}{dx}(y + 2y') = 2 + 2y' \implies y' + 2y'' = 2y + y' \implies y'' = y
+  \end{equation*}
+
+  Resolvemos la EDO mediante el polinomio característico, es decir $\lambda^{2} - 1 = 0$ con lo que obtenemos que
+  la solución es
+  \begin{equation*}
+    y(x) = C_{1}e^{x} + C_{2}e^{-x}
+  \end{equation*}
+
+  Aplicando condiciones de borde obtenemos que
+  \begin{align*}
+    C_{1} + C_{2} &= 0\\
+    C_{1}e^{1} + C_{2}e^{-1} &= e^{1} - e^{-1}
+  \end{align*}
+
+  Resolviendo (tenemos $C_{1} = -C_{2}$, factorizamos en la ecuación de abajo y obtenemos el resultado) obtenemos que
+  \begin{align*}
+    C_{1} &= 1\\
+    C_{2} &= -1
+  \end{align*}
+
+  Por lo tanto tenemos que una solución es $y(x) = e^{x} - e^{-x} = 2 \sinh(x)$
+\end{sol}
+
+\begin{sol}
+  Notemos que $L \in \mathcal{C}^{2}([x_{0}, x_{1}] \times \RR \times \RR)$. Luego sabemos que los extremos han de
+  satisfacer
+  \begin{equation*}
+    \begin{cases}
+      \frac{d}{dx} L_{b} = L_{a}\\
+      L_{b}|_{x = c^{-}} = L_{b}|_{x = c^{+}}\\
+      (L -y' L_{b})|_{x = c^{-}} = (L - y' L_{b})|_{x = c^{+}}
+    \end{cases}
+  \end{equation*}
+
+  Notemos que
+  \begin{align*}
+    L_{a} &= 0\\
+    L_{b} &= 4b^{3} - 16b
+  \end{align*}
+
+  Por lo tanto queremos que $y$ satisfaga (ctp)
+  \begin{equation*}
+    \frac{d}{dx} (4(y')^{3} - 16y') = 0
+  \end{equation*}
+
+  Luego la edo que nos queda es
+  \begin{equation*}
+    12(y')^{2} \cdot y'' - 16y'' = 0 \implies (3(y')^{2} - 4)y'' = 0
+  \end{equation*}
+
+  Luego una solución, el correspondiente a $y'' = 0$, es $y_{1}(x) = \frac{2}{3}x$. De la otra raiz obtenemos que
+  \begin{equation*}
+    |y'| = \frac{2}{\sqrt{3}}
+  \end{equation*}
+
+  Por lo tanto tenemos que la funci\'on se ve de la siguiente forma, aplicando las condiciones de borde
+  \begin{equation*}
+    y_{2}(x) = \begin{cases}
+      \frac{2}{\sqrt3} x & \text{ si } x \in [0, c]\\
+      -\frac{2}{\sqrt{3}} x + \frac{2\sqrt{3} + 6}{\sqrt3} & \text{ si } x \in [c, 3]
+    \end{cases}
+  \end{equation*}
+
+  Por otra parte
+  \begin{equation*}
+    y_{3}(x) = \begin{cases}
+      -\frac{2}{\sqrt3} x & \text{ si } x \in [0, c]\\
+      \frac{2}{\sqrt{3}} x + \frac{2 \sqrt3 - 6}{\sqrt3} & \text{ si } x \in [c, 3]
+    \end{cases}
+  \end{equation*}
+
+  Estas han de satisfacer
+  \begin{equation*}
+    L_{b}|_{x = c^{-}} = L_{b}|_{x = c^{+}}
+  \end{equation*}
+
+  Es decir
+  \begin{equation*}
+    4(y'_{2})^{3}(c^{-}) - 16y'_{2}(c^{-}) = 4y'_{2}^{3}(c^{+}) - 16y'_{2}(c^{+})
+  \end{equation*}
+
+  Calculamos
+  \begin{align*}
+    4(\frac{2}{\sqrt{3}})^{3} - \frac{32}{\sqrt{3}} = -4(\frac{2}{3})^{3} + \frac{32}{\sqrt3}
+  \end{align*}
+
+  No se satisface, por lo tanto no eran soluciones. A partir de nuevo de $y'' = 0$ obtenemos que podemos
+  considerar funciones por tramo de la siguiente forma
+  \begin{equation*}
+    y_{k} = \begin{cases}
+      m_{1,k} x + b_{1,k} & \text { si } x \in [0, c_{k}]\\
+      m_{2,k} x + b_{2,k} & \text { si } x \in [c_{k}, 1]
+    \end{cases}
+  \end{equation*}
+
+  De las condiciones iniciales, obtenemos que $b_{1,k} = 0$ y $b_{2, k} = 2 - 3m_{2,k}$. Es decir las funciones que
+  estamos buscando son
+  \begin{equation*}
+    y_{k} = \begin{cases}
+      m_{1,k} x & \text { si } x \in [0, c_{k}]\\
+      m_{2,k} (x - 3) + 2 & \text { si } x \in [c_{k}, 1]
+    \end{cases}
+  \end{equation*}
+
+  Queremos además que satisfagan las ecuaciones de esquina.
+  Calculemos $L - bL_{b}$
+  \begin{equation*}
+    L - bL_{b} = b^{4} - 8b^{2} - b(4b^{3} - 16b) = 8b^{2}- 3b^{4}
+  \end{equation*}
+
+  Notemos que esta función es simétrica respecto al eje $y$, por lo que si queremos que se llegue a satisfacer
+  la ecuación necesitaremos $m_{1,k} = -m_{2,k}$. La siguiente ecuación de esquina nos dice
+
+  \begin{equation*}
+    4m_{1,k}^{3} - 16m_{1,k} = -4m_{1,k}^{3} + 16m_{1,k} \implies 8m_{1,k}^{3} - 32m_{1,k} = 0 \implies m_{1,k}(m_{1,k}^{2} - 4)
+  \end{equation*}
+
+  Por lo tanto necesitamos $|m_{1,k}| = 2$. Apliquemos la condición de continuidad
+  \begin{align*}
+    2c_{2} = -2(c_{2} - 3) + 2 \implies c_{2} &= 2\\
+    -2c_{3} = 2(c_{3} - 3) + 2 \implies c_{3} &= 1
+  \end{align*}
+
+
+  Por lo tanto las dos soluciones que nos faltaban eran
+  \begin{align*}
+    y_{2} &= \begin{cases}
+      2x & \text{ si } x \in [0, 2]\\
+      -2(x - 3) + 2 & \text{ si } x \in [2, 3]
+    \end{cases}\\
+    y_{3} &= \begin{cases}
+      -2x & \text{ si } x \in [0, 1]\\
+      2(x - 3) + 2 & \text{ si } x \in [1, 3]
+    \end{cases}
+  \end{align*}
+\end{sol}
+
 \end{document}
